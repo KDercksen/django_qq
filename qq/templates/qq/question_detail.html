@@ -3,13 +3,23 @@
 {% block content %}
 	<a href="{% url 'qq:questions' %}">Back to questions</a>
 	<a href="{% url 'qq:answer' object.id %}">Answer question</a>
+	<hr />
 	{% include "qq/question_solo.html" %}
+	<hr />
 	{% for answer in object.answer_set.all %}
-		<p>{{ answer.answer_text }}</p>
-		<p><i>{{ answer.author }} - {{ answer.pub_date }}</p>
-		<p><i>Votes: {{ answer.votes }}</i></p>
-		<a href="{% url 'qq:upvote-answer' object.id answer.id %}">Upvote</a>
-		<a href="{% url 'qq:downvote-answer' object.id answer.id %}">Downvote</a>
-		<hr />
+		<div class="card {% if answer.votes < 0 %}text-white bg-danger{% else %}bg-light{% endif %}">
+			<div class="card-header">
+				<i>{{ answer.author }} - {{ answer.pub_date }}</i>
+			</div>
+			<div class="card-body">
+				<p class="card-text">{{ answer.answer_text }}</p>
+				<footer class="blockquote-footer">
+					<p><i>Votes: {{ answer.votes }}</i></p>
+					<a href="{% url 'qq:upvote-answer' object.id answer.id %}">Upvote</a>
+					<a href="{% url 'qq:downvote-answer' object.id answer.id %}">Downvote</a>
+				</footer>
+			</div>
+		</div>
+		<br />
 	{% endfor %}
 {% endblock %}

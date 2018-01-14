@@ -1,11 +1,13 @@
 {% extends "qq/base_generic.html" %}
 
+{% load bootstrap4 %}
+
 {% block content %}
-<form action="{% url 'qq:ask' %}" method="post">
+<form action="{% url 'qq:ask' %}" method="post" class="form">
 	{% csrf_token %}
-	<table>
-		{{ form.as_table }}
-	</table>
-	<input type="submit" value="Submit" />
+	{% bootstrap_form form %}
+	{% buttons %}
+		<button type="submit" class="btn btn-primary">Submit</button>
+	{% endbuttons %}
 </form>
 {% endblock %}

@@ -2,17 +2,20 @@
 
 {% block content %}
 	<a href="{% url 'qq:ask' %}">Ask a question!</a>
-	<h1>Question list</h1>
+	<h2 class="text-center">Question list</h2>
 
 	{% if question_list %}
-	<ul>
+	<ul class="list-group">
 		{% for question in question_list %}
-		<li>
-			<a href="{% url 'qq:question-thread' question.id %}">{{ question.question_title }} - <i>{{ question.author }}</i> {% if question.answer_set.all %}<b>[Answered]</b>{% endif %}</a>
+		<li class="list-group-item {% if question.answer_set.all %}list-group-item-success{% endif %}">
+			<a href="{% url 'qq:question-thread' question.id %}">
+				{{ question.question_title }} - <i>{{ question.author }}</i>
+				{% if question.answer_set.all %}<b>[Answered]</b>{% endif %}
+			</a>
 		</li>
 		{% endfor %}
 	</ul>
 	{% else %}
-	<p>No questions available at the moment.</p>
+	<p class="text-muted">No questions available at the moment.</p>
 	{% endif %}
 {% endblock %}

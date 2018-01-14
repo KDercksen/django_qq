@@ -1,4 +1,7 @@
-<h3>{{ object.question_title }}</h3>
-<p>{{ object.question_text }}</p>
-<p><i>{{ object.author }} - {{ object.pub_date }}</i></p>
-<hr />
+<div class="card {% if object.answer_set.all %}bg-success text-white{% else %}bg-light{% endif %}">
+	<div class="card-header"><i>{{ object.author }} - {{ object.pub_date }}</i></div>
+	<div class="card-body">
+		<h5 class="card-title">{{ object.question_title }}</h5>
+		<p class="card-text">{{ object.question_text }}</p>
+	</div>
+</div>

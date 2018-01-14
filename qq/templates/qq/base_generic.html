@@ -1,10 +1,20 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	{% block title %}<title>Question Queue</title>{% endblock %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 
 <body>
-	{% block content %}<!-- content here -->{% endblock %}
+	<div class="container">
+		{% block content %}<!-- content here -->{% endblock %}
+	</div>
+	<hr />
+	<div class="container text-center">
+		<p class="text-muted">Koen Dercksen (TM)</p>
+	</div>
 </body>
 </html>
