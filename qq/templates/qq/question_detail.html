@@ -1,0 +1,15 @@
+{% extends "qq/base_generic.html" %}
+
+{% block content %}
+	<a href="{% url 'qq:questions' %}">Back to questions</a>
+	<a href="{% url 'qq:answer' object.id %}">Answer question</a>
+	{% include "qq/question_solo.html" %}
+	{% for answer in object.answer_set.all %}
+		<p>{{ answer.answer_text }}</p>
+		<p><i>{{ answer.author }} - {{ answer.pub_date }}</p>
+		<p><i>Votes: {{ answer.votes }}</i></p>
+		<a href="{% url 'qq:upvote-answer' object.id answer.id %}">Upvote</a>
+		<a href="{% url 'qq:downvote-answer' object.id answer.id %}">Downvote</a>
+		<hr />
+	{% endfor %}
+{% endblock %}

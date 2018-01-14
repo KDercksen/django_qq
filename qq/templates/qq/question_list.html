@@ -1,0 +1,18 @@
+{% extends "qq/base_generic.html" %}
+
+{% block content %}
+	<a href="{% url 'qq:ask' %}">Ask a question!</a>
+	<h1>Question list</h1>
+
+	{% if question_list %}
+	<ul>
+		{% for question in question_list %}
+		<li>
+			<a href="{% url 'qq:question-thread' question.id %}">{{ question.question_title }} - <i>{{ question.author }}</i> {% if question.answer_set.all %}<b>[Answered]</b>{% endif %}</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p>No questions available at the moment.</p>
+	{% endif %}
+{% endblock %}

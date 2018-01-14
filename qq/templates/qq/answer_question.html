@@ -1,0 +1,13 @@
+{% extends "qq/base_generic.html" %}
+
+{% block content %}
+	<a href="{% url 'qq:question-thread' object.id %}">Back to question</a>
+	{% include "qq/question_solo.html" %}
+	<form action="{% url 'qq:answer' object.id %}" method="post">
+		{% csrf_token %}
+		<table>
+			{{ form.as_table }}
+		</table>
+		<input type="submit" value="Submit" />
+	</form>
+{% endblock %}
